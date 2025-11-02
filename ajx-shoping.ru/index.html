@@ -1,0 +1,672 @@
+﻿
+<!DOCTYPE html>
+<html lang="tk" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Halal Gornusde | AJX SHOPING</title>
+    <script src="3.4-1.17"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+        }
+    </script>
+    <link rel="stylesheet" href="ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="preconnect" href="index.htm">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin="">
+    <link href="css2-1?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        @keyframes moveBackground { 0% { background-position: 0% 50%, 100% 50%; } 50% { background-position: 100% 50%, 0% 50%; } 100% { background-position: 0% 50%, 100% 50%; } }
+        @keyframes pulse { 50% { opacity: .8; transform: scale(1.1); } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes shake { 10%, 90% { transform: translate3d(-1px, 0, 0); } 20%, 80% { transform: translate3d(2px, 0, 0); } 30%, 50%, 70% { transform: translate3d(-4px, 0, 0); } 40%, 60% { transform: translate3d(4px, 0, 0); } }
+        body { font-family: 'Inter', sans-serif; background-color: #f0f2f5; background-image: radial-gradient(circle at 10% 20%, rgba(22, 163, 74, 0.08), transparent 40%), radial-gradient(circle at 90% 80%, rgba(16, 185, 129, 0.08), transparent 40%); background-size: 200% 200%; animation: moveBackground 25s ease infinite; }
+        .card { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 1.25rem; transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1); position: relative; overflow: hidden; }
+        .dark body { background-color: #0f172a; background-image: radial-gradient(circle at 10% 20%, rgba(34, 197, 94, 0.08), transparent 40%), radial-gradient(circle at 90% 80%, rgba(29, 78, 216, 0.08), transparent 40%); }
+        .dark .card { background: rgba(30, 41, 59, 0.7); border-color: rgba(255, 255, 255, 0.1); }
+        html.modal-open, body.modal-open { overflow: hidden; }
+        .animate-on-scroll { opacity: 0; transform: translateY(40px); transition: opacity 0.8s cubic-bezier(0.165, 0.84, 0.44, 1), transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1); }
+        .is-visible { opacity: 1; transform: translateY(0); }
+        .btn-hover-effect:hover { transform: translateY(-3px) scale(1.03); box-shadow: 0 12px 20px -5px rgba(0, 0, 0, 0.1); }
+        .category-title { position: relative; display: inline-block; padding-bottom: 0.5rem; }
+        .category-title::after { content: ''; position: absolute; bottom: 0; left: 0; width: 50%; height: 4px; border-radius: 2px; background: linear-gradient(to right, #16a34a, #10b981); transition: width 0.4s ease; }
+        .is-visible .category-title::after { width: 100%; }
+        .card:hover { transform: translateY(-8px); box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15); }
+        .card::before { content: ''; position: absolute; top: 0; left: -150%; width: 100%; height: 100%; background: linear-gradient(110deg, rgba(255,255,255,0) 40%, rgba(255,255,255,0.5) 50%, rgba(255,255,255,0) 60%); transform: skewX(-25deg); transition: left 0.8s; }
+        .dark .card::before { background: linear-gradient(110deg, rgba(255,255,255,0) 40%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0) 60%); }
+        .card:hover::before { left: 150%; }
+        .icon-container { width: 72px; height: 72px; border-radius: 1.25rem; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); }
+        .card:hover .icon-container { transform: scale(1.1) rotate(-5deg); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+    </style>
+</head>
+<body class="text-gray-800 dark:text-gray-100 antialiased">
+    <div class="container mx-auto px-4 md:px-6 py-16 md:py-24">
+        <header class="text-center mb-20 relative">
+            <button id="theme-toggle" class="absolute top-0 right-0 p-2 rounded-full bg-gray-200/50 hover:bg-gray-300/50 dark:bg-slate-700/50 dark:hover:bg-slate-600/50 transition-all duration-300 z-10">
+                <svg id="theme-icon-light" class="w-6 h-6 text-gray-800 dark:text-gray-100" fill="none" viewbox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                <svg id="theme-icon-dark" class="w-6 h-6 text-gray-800 dark:text-gray-100 hidden" fill="none" viewbox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+            </button>
+            <h1 id="main-title" class="text-5xl md:text-7xl font-black tracking-tighter bg-clip-text text-transparent bg-gradient-to-br from-green-600 via-emerald-500 to-teal-400">
+                <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" fill="currentColor" class="inline-block w-10 h-10 md:w-14 md:h-14 -mt-2 md:-mt-3 mr-2 text-green-500 drop-shadow-[0_4px_10px_rgba(34,197,94,0.3)]" style="animation: pulse 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;">
+                    <path fill-rule="evenodd" d="M14.615 1.595a.75.75 0 01.359.852L12.982 9.75h7.268a.75.75 0 01.548 1.262l-10.5 11.25a.75.75 0 01-1.272-.71l1.992-9.375H3.06a.75.75 0 01-.548-1.262l10.5-11.25a.75.75 0 01.913-.143z" clip-rule="evenodd"></path>
+                </svg>AJX SHOPING
+            </h1>
+            <p class="text-gray-600 dark:text-gray-400 mt-5 text-xl max-w-2xl mx-auto">Gözleýän ähli sanly harytlaryňyz çalt, aňsat we ygtybarly ýoldaşyňyz.</p>
+        </header>
+        <main id="all-products" class="space-y-20"></main>
+        <footer class="border-t border-gray-200/80 dark:border-slate-700/80 mt-24 pt-10 text-center text-gray-500 dark:text-gray-400 text-base">
+            <p>&copy; 𝟚𝟘𝟚𝟝 𝘼𝙩𝙖𝙟𝙖𝙣 𝙫𝘽𝙀𝙏𝘼 𝘾𝙤𝙥𝙮𝙧𝙞𝙜𝙝𝙩. 𝘼𝙡𝙡 𝙍𝙞𝙜𝙝𝙩𝙨 𝙍𝙚𝙨𝙚𝙧𝙫𝙚𝙙.</p>
+        </footer>
+    </div>
+    <div id="price-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4 transition-opacity duration-300 backdrop-blur-sm">
+        <div id="modal-content" class="bg-white dark:bg-slate-800 rounded-2xl shadow-2xl w-full max-w-md transform transition-all duration-300 scale-95 opacity-0 flex flex-col max-h-[90vh]" style="transition-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);">
+            <div class="p-6 border-b border-gray-200 bg-gray-50 dark:bg-slate-700/50 dark:border-slate-700 rounded-t-2xl flex-shrink-0">
+                <div class="flex items-start justify-between">
+                    <h3 id="modal-title" class="text-2xl font-extrabold text-gray-800 dark:text-gray-100">Seçenekleri saýlaň</h3>
+                    <button id="close-price-modal-btn" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 hover:rotate-90 transition-transform duration-300">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    </button>
+                </div>
+            </div>
+            <div id="modal-body" class="p-4 sm:p-6 overflow-y-auto"></div>
+        </div>
+    </div>
+    <div id="confirmation-modal" class="hidden fixed inset-0 bg-black bg-opacity-60 z-50 flex items-center justify-center p-4 transition-opacity duration-300 backdrop-blur-sm">
+        <div id="confirmation-content" class="bg-white dark:bg-slate-800 rounded-2xl shadow-2xl w-full max-w-sm transform transition-all duration-300 scale-95 opacity-0" style="transition-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);">
+        </div>
+    </div>
+    <div id="insufficient-balance-modal" class="hidden fixed inset-0 bg-black bg-opacity-60 z-50 flex items-center justify-center p-4 transition-opacity duration-300 backdrop-blur-sm">
+        <div id="insufficient-balance-content" class="bg-white dark:bg-slate-800 rounded-2xl shadow-2xl w-full max-w-sm transform transition-all duration-300 scale-95 opacity-0 text-center p-8" style="transition-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);">
+            <svg class="w-16 h-16 text-red-500 mx-auto mb-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            <h3 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-2">Balans Ýeterlik Däl!</h3>
+            <p class="text-gray-600 dark:text-gray-400 mb-6">Bu harydy satyn almak üçin balansyňyzda ýeterlik serişde ýok.</p>
+            <button id="close-insufficient-balance-btn" class="w-full bg-red-500 text-white font-bold py-3 px-5 rounded-lg transition-all duration-300 transform shadow-md btn-hover-effect">Düşnükli</button>
+        </div>
+    </div>
+    <div id="topup-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4 transition-opacity duration-300 backdrop-blur-sm">
+        <div id="topup-content" class="bg-white dark:bg-slate-800 rounded-2xl shadow-2xl w-full max-w-md transform transition-all duration-300 scale-95 opacity-0 flex flex-col max-h-[90vh]" style="transition-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);">
+            <div class="p-6 border-b border-gray-200 bg-gray-50 dark:bg-slate-700/50 dark:border-slate-700 rounded-t-2xl flex-shrink-0">
+                <div class="flex items-start justify-between">
+                    <h3 class="text-2xl font-extrabold text-gray-800 dark:text-gray-100">Balans doldurmagyň usullary</h3>
+                    <button id="close-topup-modal-btn" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 hover:rotate-90 transition-transform duration-300">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    </button>
+                </div>
+            </div>
+            <div id="topup-body" class="p-4 sm:p-6 overflow-y-auto space-y-4">
+            </div>
+            <div class="p-4 sm:p-6 border-t border-gray-200 dark:border-slate-700">
+                <button id="topup-request-btn" class="w-full bg-green-600 text-white font-bold py-3 px-5 rounded-lg transition-all duration-300 transform shadow-md btn-hover-effect">Doldurmak Islegi</button>
+            </div>
+        </div>
+    </div>
+    <div id="balance-display" class="fixed bottom-4 left-4 bg-white/80 dark:bg-slate-800/80 backdrop-blur-md rounded-full shadow-lg flex items-center p-1.5 pr-4 transition-transform hover:scale-105 duration-300 z-50">
+        <div id="pfp-container" class="w-10 h-10 rounded-full border-2 border-white bg-gray-200 dark:bg-slate-600 flex items-center justify-center text-gray-500 dark:text-slate-300 font-bold text-lg overflow-hidden">
+            <img id="user-pfp" src="" alt="Profil" class="w-full h-full object-cover hidden">
+            <span id="user-initial"></span>
+        </div>
+        <div class="ml-2 text-left">
+            <p class="text-xs text-gray-500 dark:text-gray-400 -mb-1">Balans</p>
+            <p class="font-bold text-lg text-gray-800 dark:text-gray-100">
+                <span id="user-balance">0.00</span> TMT
+            </p>
+        </div>
+        <button id="open-topup-modal-btn" class="ml-2 w-8 h-8 bg-green-100 text-green-600 dark:bg-green-900/50 dark:text-green-400 rounded-full flex items-center justify-center hover:bg-green-200 dark:hover:bg-green-800/50 transition-colors">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+        </button>
+    </div>
+    <script src="js/telegram-web-app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const tg = window.Telegram.WebApp;
+            const mainContainer = document.getElementById('all-products');
+            const priceModal = document.getElementById('price-modal');
+            const priceModalContent = document.getElementById('modal-content');
+            const modalTitle = document.getElementById('modal-title');
+            const modalBody = document.getElementById('modal-body');
+            const closeModalBtn = document.getElementById('close-price-modal-btn');
+            const confirmationModal = document.getElementById('confirmation-modal');
+            const confirmationContent = document.getElementById('confirmation-content');
+            const insufficientBalanceModal = document.getElementById('insufficient-balance-modal');
+            const insufficientBalanceContent = document.getElementById('insufficient-balance-content');
+            const closeInsufficientBalanceBtn = document.getElementById('close-insufficient-balance-btn');
+            const topupModal = document.getElementById('topup-modal');
+            const topupContent = document.getElementById('topup-content');
+            const topupBody = document.getElementById('topup-body');
+            const closeTopupModalBtn = document.getElementById('close-topup-modal-btn');
+            const openTopupModalBtn = document.getElementById('open-topup-modal-btn');
+            const topupRequestBtn = document.getElementById('topup-request-btn');
+            const themeToggle = document.getElementById('theme-toggle');
+            const themeIconLight = document.getElementById('theme-icon-light');
+            const themeIconDark = document.getElementById('theme-icon-dark');
+            const html = document.documentElement;
+            const userBalanceElement = document.getElementById('user-balance');
+            let currentBalance = 0.0;
+            let currentOrderDetails = {};
+
+            function applyTheme(theme) {
+                if (theme === 'dark') {
+                    html.classList.add('dark');
+                    themeIconLight.classList.add('hidden');
+                    themeIconDark.classList.remove('hidden');
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    html.classList.remove('dark');
+                    themeIconLight.classList.remove('hidden');
+                    themeIconDark.classList.add('hidden');
+                    localStorage.setItem('theme', 'light');
+                }
+            }
+            function toggleTheme() {
+                const currentTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                applyTheme(newTheme);
+            }
+            const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+            applyTheme(savedTheme);
+            themeToggle.addEventListener('click', toggleTheme);
+
+            const categories = [ 
+                { id: 'abunalar-we-hyzmatlar', title: 'Abunalar we Hyzmatlar' }, 
+                { id: 'bot-hyzmatlary', title: 'Bot Hyzmatlary' }, 
+                { id: 'dizayn-hyzmatlary', title: 'Dizaýn Hyzmatlary' }, 
+                { id: 'reklama-hyzmatlary', title: 'Reklama Hyzmatlary' }, 
+                { id: 'virtual-nomer', title: 'Virtual Nomer' } 
+            ];
+            
+            // --- HARYTLAR (TÄZELENEN) ---
+            const allProducts = { 
+                'telegram-yyldyz': { name: 'Telegram Ýyldyz', desc: 'Kanallar üçin ýyldyzlar', category: 'abunalar-we-hyzmatlar', img: 'https://yyldyz.store/_next/image?url=%2Fjtns%2Fstar.png&w=96&q=75', inputType: { id: 'tg-username', label: 'Tg. Username:', placeholder: '@username ýa-da kanal linki', type: 'text' }, prices: [ { amount: '50', currencies: { TMT: '22.00' } }, { amount: '100', currencies: { TMT: '43.00' } }, { amount: '150', currencies: { TMT: '57.00' } }, { amount: '200', currencies: { TMT: '78.00' } }, { amount: '250', currencies: { TMT: '95.00' } }, { amount: '300', currencies: { TMT: '113.00' } }, { amount: '350', currencies: { TMT: '128.00' } }, { amount: '400', currencies: { TMT: '148.00' } }, { amount: '450', currencies: { TMT: '165.00' } }, { amount: '500', currencies: { TMT: '185.00' } }, { amount: '600', currencies: { TMT: '205.00' } }, { amount: '700', currencies: { TMT: '245.00' } }, { amount: '800', currencies: { TMT: '275.00' } }, { amount: '900', currencies: { TMT: '315.00' } }, { amount: '1000', currencies: { TMT: '345.00' } } ]},
+                'telegram-premium': { name: 'Telegram Premium', desc: 'Hasabyňyz üçin premium statusy', category: 'abunalar-we-hyzmatlar', icon: '<i class="fab fa-telegram-plane text-4xl text-white"></i>', color: 'bg-sky-500', inputType: { id: 'tg-username', label: 'Tg. Username:', placeholder: '@username', type: 'text' }, prices: [ { amount: '1 aýlyk', currencies: { TMT: '87.00' } }, { amount: '3 aýlyk', currencies: { TMT: '280.00' } }, { amount: '12 aýlyk', currencies: { TMT: '670.00' } } ] },
+                'surat-yazama-okuw': { 
+                    name: 'Surat yasamany öwretmek', // Ady üýtgedildi
+                    desc: 'Grafiki dizaýn okuwy', 
+                    category: 'abunalar-we-hyzmatlar', 
+                    icon: '<i class="fas fa-graduation-cap text-4xl text-white"></i>', 
+                    color: 'bg-yellow-500', 
+                    inputType: { id: 'tg-username', label: 'Tg. Username:', placeholder: '@username', type: 'text' }, 
+                    prices: [ 
+                        { amount: '0-dan pes dereje', currencies: { TMT: '30.00' } }, 
+                        { amount: '0-dan orta dereje', currencies: { TMT: '70.00' } }, 
+                        { amount: '0-dan masterlik dereje', currencies: { TMT: '100.00' } } 
+                    ] 
+                },
+                'poster-bot-script': { name: 'Poster Bot Script', desc: 'Awtomatiki poster paýlaýan bot', category: 'bot-hyzmatlary', icon: '<i class="fas fa-file-image text-4xl text-white"></i>', color: 'bg-blue-500', inputType: { id: 'tg-username', label: 'Tg. Username:', placeholder: '@username', type: 'text' }, prices: [ { amount: 'Pesi', currencies: { TMT: '10.00' } }, { amount: 'Ortasy', currencies: { TMT: '20.00' } }, { amount: 'Gowysy', currencies: { TMT: '30.00' } } ] }, 
+                'sponsor-bot-script': { name: 'Sponsor Bot Script (Adaty)', desc: 'Hemaýatkärlik boty', category: 'bot-hyzmatlary', icon: '<i class="fas fa-users text-4xl text-white"></i>', color: 'bg-green-500', inputType: { id: 'tg-username', label: 'Tg. Username:', placeholder: '@username', type: 'text' }, prices: [ { amount: 'Pesi', currencies: { TMT: '10.00' } }, { amount: 'Gowysy', currencies: { TMT: '70.00' } } ] }, 
+                'danny-bot-script': { name: 'Danny Bot Script', desc: 'Funksional dolandyryş boty', category: 'bot-hyzmatlary', icon: '<i class="fas fa-cogs text-4xl text-white"></i>', color: 'bg-red-500', inputType: { id: 'tg-username', label: 'Tg. Username:', placeholder: '@username', type: 'text' }, prices: [ { amount: 'Pesi', currencies: { TMT: '50.00' } }, { amount: 'Gowysy', currencies: { TMT: '250.00' } } ] }, 
+                'stars-bot-script': { name: 'Stars Bot Script', desc: 'Awtomatiki ýyldyz boty', category: 'bot-hyzmatlary', icon: '<i class="fas fa-star-of-life text-4xl text-white"></i>', color: 'bg-purple-500', inputType: { id: 'tg-username', label: 'Tg. Username:', placeholder: '@username', type: 'text' }, prices: [ { amount: 'Standart', currencies: { TMT: '70.00' } } ] },
+                'awto-post-hyzmaty': { name: 'Awto Post Hyzmaty', desc: 'Awtomatiki post paýlaýan hyzmat', category: 'bot-hyzmatlary', icon: '<i class="fas fa-paper-plane text-4xl text-white"></i>', color: 'bg-pink-500', inputType: { id: 'tg-username', label: 'Tg. Username:', placeholder: '@username', type: 'text' }, prices: [ { amount: '1 aýlyk', currencies: { TMT: '20.00' } } ] },
+                'happ-podpiska-script': { name: 'Happ Podpiska Script', desc: 'Happ (VIP) kanal scripti', category: 'bot-hyzmatlary', icon: '<i class="fas fa-key text-4xl text-white"></i>', color: 'bg-cyan-500', inputType: { id: 'tg-username', label: 'Tg. Username:', placeholder: '@username', type: 'text' }, prices: [ { amount: 'Standart', currencies: { TMT: '50.00' } } ] },
+                'logo-tip': { name: 'Logo Tip', desc: 'Brendiňiz üçin logo dizaýny', category: 'dizayn-hyzmatlary', icon: '<i class="fas fa-drafting-compass text-4xl text-white"></i>', color: 'bg-orange-500', inputType: { id: 'tg-username', label: 'Tg. Username:', placeholder: '@username', type: 'text' }, prices: [ { amount: 'Standart', originalCurrencies: { TMT: '10.00' }, currencies: { TMT: '5.00' } } ] }, 
+                'banner': { name: 'Banner', desc: 'Kanal ýa-da web sahypa üçin banner', category: 'dizayn-hyzmatlary', icon: '<i class="fas fa-image text-4xl text-white"></i>', color: 'bg-teal-500', inputType: { id: 'tg-username', label: 'Tg. Username:', placeholder: '@username', type: 'text' }, prices: [ { amount: 'Standart', originalCurrencies: { TMT: '20.00' }, currencies: { TMT: '15.00' } } ] }, 
+                'awatar': { name: 'Awatar', desc: 'Sosial media üçin profil suraty', category: 'dizayn-hyzmatlary', icon: '<i class="fas fa-user-circle text-4xl text-white"></i>', color: 'bg-sky-500', inputType: { id: 'tg-username', label: 'Tg. Username:', placeholder: '@username', type: 'text' }, prices: [ { amount: 'Standart', originalCurrencies: { TMT: '20.00' }, currencies: { TMT: '15.00' } } ] }, 
+                'prewyu': { name: 'Prewyu', desc: 'YouTube wideolary üçin prewýu', category: 'dizayn-hyzmatlary', icon: '<i class="fab fa-youtube text-4xl text-white"></i>', color: 'bg-red-600', inputType: { id: 'tg-username', label: 'Tg. Username:', placeholder: '@username', type: 'text' }, prices: [ { amount: 'Standart', originalCurrencies: { TMT: '15.00' }, currencies: { TMT: '10.00' } } ] }, 
+                'reklama-hyzmaty': { name: '+10k Kanallarda Reklama', desc: 'Uly kanallarda reklama', category: 'reklama-hyzmatlary', icon: '<i class="fas fa-bullhorn text-4xl text-white"></i>', color: 'bg-indigo-500', inputType: { id: 'tg-username', label: 'Tg. Username (Reklama üçin):', placeholder: '@username', type: 'text' }, prices: [ { amount: '3 uly kanalda 1 sagat', currencies: { TMT: '20.00' } }, { amount: '5 uly kanalda 1 sagat', currencies: { TMT: '30.00' } }, { amount: '7 uly kanalda 1 sagat', currencies: { TMT: '50.00' } } ] },
+                'sponsor-bot-reklama': { // Täze goşulan
+                    name: 'Sponsor Bot Rek. Hyzmaty', 
+                    desc: 'Sponsor bot arkaly reklama', 
+                    category: 'reklama-hyzmatlary', 
+                    icon: '<i class="fas fa-ad text-4xl text-white"></i>', 
+                    color: 'bg-lime-500', 
+                    inputType: { id: 'tg-username', label: 'Tg. Username (Reklama üçin):', placeholder: '@username', type: 'text' }, 
+                    prices: [ 
+                        { amount: 'Standart', currencies: { TMT: '10.00' } } 
+                    ] 
+                },
+                'telegram-nomer': { name: 'Telegram Nomer', desc: 'Virtual nomer', category: 'virtual-nomer', icon: '<i class="fab fa-telegram-plane text-4xl text-white"></i>', color: 'bg-sky-500', inputType: { id: 'tg-username', label: 'Tg. Username:', placeholder: '@username', type: 'text' }, prices: [ { amount: 'Standart', currencies: { TMT: '30.00' } } ] },
+                'imo-nomer': { name: 'Imo Nomer', desc: 'Virtual nomer', category: 'virtual-nomer', icon: '<i class="fas fa-video text-4xl text-white"></i>', color: 'bg-green-500', inputType: { id: 'tg-username', label: 'Tg. Username:', placeholder: '@username', type: 'text' }, prices: [ { amount: 'Standart', currencies: { TMT: '10.00' } } ] },
+                'link-nomer': { name: 'Link Nomer', desc: 'Virtual nomer', category: 'virtual-nomer', icon: '<i class="fas fa-link text-4xl text-white"></i>', color: 'bg-gray-500', inputType: { id: 'tg-username', label: 'Tg. Username:', placeholder: '@username', type: 'text' }, prices: [ { amount: 'Standart', currencies: { TMT: '10.00' } } ] },
+                'instagram-nomer': { name: 'Instagram Nomer', desc: 'Virtual nomer', category: 'virtual-nomer', icon: '<i class="fab fa-instagram text-4xl text-white"></i>', color: 'bg-pink-600', inputType: { id: 'tg-username', label: 'Tg. Username:', placeholder: '@username', type: 'text' }, prices: [ { amount: 'Standart', currencies: { TMT: '15.00' } } ] },
+                'tiktok-nomer': { name: 'TikTok Nomer', desc: 'Virtual nomer', category: 'virtual-nomer', icon: '<i class="fab fa-tiktok text-4xl text-white"></i>', color: 'bg-black', inputType: { id: 'tg-username', label: 'Tg. Username:', placeholder: '@username', type: 'text' }, prices: [ { amount: 'Standart', currencies: { TMT: '15.00' } } ] }
+            };
+            // --- HARYTLAR GUTARDY ---
+
+            const topupMethods = [
+                { name: 'TMCELL', commission: 0.03, color: 'bg-red-100', textColor: 'text-red-800' },
+                { name: 'Bank', commission: 0.02, color: 'bg-blue-100', textColor: 'text-blue-800' },
+                { name: 'Bankomat (kartdan karta)', commission: 0.01, color: 'bg-green-100', textColor: 'text-green-800' },
+                { name: 'USDT', commission: 0, color: 'bg-teal-100', textColor: 'text-teal-800' },
+                { name: 'Nagt', commission: 0, color: 'bg-gray-100', textColor: 'text-gray-800' },
+            ];
+
+            // --- JavaScript Funksiýalarynyň Galany (üýtgewsiz) ---
+            function setupTelegram() { 
+                if (tg && tg.ready) { 
+                    tg.ready(); 
+                    tg.expand(); 
+                    updateUserInfo();
+                } else { 
+                    // Fallback if Telegram WebApp JS fails or is not available
+                    console.log("Telegram WebApp not ready, using URL params for initial info.");
+                    updateUserInfo(); 
+                } 
+            }
+            function getInitialBalanceFromUrl() { 
+                const p = new URLSearchParams(window.location.search); 
+                // Ensure the value is parsed correctly and defaults to 0.00
+                const balanceParam = p.get('balance');
+                const balance = parseFloat(balanceParam);
+                return !isNaN(balance) ? balance : 0.00; 
+            }
+            function updateUserInfo() { 
+                currentBalance = getInitialBalanceFromUrl(); 
+                userBalanceElement.textContent = currentBalance.toFixed(2); 
+                const p = document.getElementById('user-pfp');
+                const i = document.getElementById('user-initial');
+                const u = tg?.initDataUnsafe?.user; // Use optional chaining
+                if (u?.photo_url) { 
+                    p.src = u.photo_url; 
+                    p.classList.remove('hidden'); 
+                    i.classList.add('hidden'); 
+                } else { 
+                    const f = u?.first_name || 'U'; // Default to 'U' if no name
+                    i.textContent = f.charAt(0).toUpperCase(); 
+                    p.classList.add('hidden'); 
+                    i.classList.remove('hidden'); 
+                } 
+            }
+            function updateUserBalanceDisplay(newBalance) {
+                newBalance = Math.max(0, newBalance); // Prevent negative balance display
+                currentBalance = newBalance; 
+                userBalanceElement.textContent = newBalance.toFixed(2);
+            }
+
+            function renderAllProducts() { 
+                mainContainer.innerHTML = ''; 
+                categories.forEach(c => { 
+                    const s = document.createElement('section'); 
+                    s.id = c.id; 
+                    s.className = 'animate-on-scroll'; 
+                    const t = document.createElement('h2'); 
+                    t.className = 'category-title text-3xl font-extrabold text-gray-800 dark:text-gray-100 mb-10'; 
+                    t.textContent = c.title; 
+                    s.appendChild(t); 
+                    const g = document.createElement('div'); 
+                    g.className = 'grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6'; 
+                    Object.entries(allProducts).forEach(([k, p]) => { 
+                        if (p.category === c.id) { 
+                            const card = document.createElement('div'); 
+                            card.className = 'card group p-6 text-center cursor-pointer flex flex-col items-center justify-center'; 
+                            card.dataset.productKey = k; 
+                            const icon = p.img ? `<img src="${p.img}" alt="${p.name}" class="w-12 h-12 object-contain">` : (p.icon || '<i class="fas fa-question text-4xl text-white"></i>'); // Default icon
+                            
+                            card.innerHTML = `<div class="icon-container ${p.color || 'bg-gray-400'}">${icon}</div><h3 class="font-bold text-xl text-gray-800 dark:text-gray-100 leading-tight min-h-[56px] flex items-center justify-center">${p.name}</h3><p class="text-gray-500 dark:text-gray-400 mt-1 text-sm">${p.desc}</p>`; 
+                            g.appendChild(card); 
+                        } 
+                    }); 
+                    s.appendChild(g); 
+                    mainContainer.appendChild(s); 
+                }); 
+                setupScrollAnimations(); 
+            }
+            function renderPrices(k, n, prices) { 
+                modalBody.innerHTML = ''; 
+                const l = document.createElement('div'); 
+                l.className = 'space-y-3'; 
+                prices.forEach((i, idx) => { 
+                    const p = i.currencies.TMT; 
+                    const o = i.originalCurrencies?.TMT; 
+                    let d = `<p class="text-md text-green-600 font-bold">${p} TMT</p>`; 
+                    if (o) { 
+                        d = `<div class="flex items-baseline space-x-2"><p class="text-sm text-gray-400 dark:text-gray-500 line-through">${o} TMT</p>${d}</div>`; 
+                    } 
+                    // Ensure details are properly stringified for the onclick attribute
+                    const detailsObj = { productKey: k, productName: n, amount: i.amount, price: p };
+                    const detailsStr = JSON.stringify(detailsObj).replace(/"/g, '&quot;'); 
+                    
+                    l.innerHTML += `<div class="group flex items-center justify-between p-3 rounded-xl hover:bg-gray-100 dark:hover:bg-slate-700 transition-colors duration-200" style="animation: fadeIn 0.4s ${idx * 0.02}s ease-out forwards; opacity: 0;">
+                                        <div>
+                                            <p class="font-bold text-lg text-gray-800 dark:text-gray-100">${i.amount}</p>
+                                            ${d}
+                                        </div>
+                                        <button onclick='openConfirmationModal(${detailsStr})' class="bg-green-600 text-white font-bold py-2 px-5 rounded-lg transition-all duration-300 transform shadow-md btn-hover-effect">Satyn Al</button>
+                                     </div>`; 
+                }); 
+                modalBody.appendChild(l); 
+            }
+            function openModal(m, c) { 
+                document.documentElement.classList.add('modal-open'); 
+                m.classList.remove('hidden'); 
+                // Use requestAnimationFrame for smoother transition start
+                requestAnimationFrame(() => {
+                    m.classList.add('opacity-100'); 
+                    c.classList.remove('scale-95', 'opacity-0'); 
+                });
+            }
+            function closeModal(m, c) { 
+                document.documentElement.classList.remove('modal-open'); 
+                c.classList.add('scale-95', 'opacity-0'); 
+                // Use setTimeout to allow transition to complete before hiding
+                setTimeout(() => { 
+                    m.classList.add('hidden'); 
+                    m.classList.remove('opacity-100'); 
+                }, 300); // Match transition duration
+            }
+            
+            function renderTopupCalculators() {
+                topupBody.innerHTML = '';
+                topupMethods.forEach(method => {
+                    const card = document.createElement('div');
+                    let darkColor = method.color.replace('-100', '-900/20');
+                    let darkTextColor = method.textColor.replace('-800', '-200');
+                    // Special handling for gray color in dark mode
+                    if (method.name === 'Nagt') {
+                        darkColor = 'dark:bg-slate-700';
+                        darkTextColor = 'dark:text-gray-200';
+                    }
+                    card.className = `p-4 rounded-lg border ${method.color} ${darkColor} dark:border-slate-700`;
+                    card.innerHTML = `
+                        <div class="flex justify-between items-center mb-2">
+                            <h4 class="font-bold text-lg ${method.textColor} ${darkTextColor}">${method.name}</h4>
+                            <span class="text-sm font-semibold ${method.textColor} ${darkTextColor} px-2 py-1 rounded-full ${method.color.replace('bg-','bg-opacity-50 ')} ${darkColor.replace('dark:','dark:bg-opacity-50 ')}">${(method.commission * 100).toFixed(0)}%</span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2">
+                            <div>
+                                <label class="text-xs ${method.textColor} ${darkTextColor}">Berýäň:</label>
+                                <input type="number" step="0.01" min="0" class="w-full p-2 border rounded dark:bg-slate-700 dark:border-slate-600 dark:text-white" data-commission="${method.commission}" placeholder="0.00">
+                            </div>
+                            <div>
+                                <label class="text-xs ${method.textColor} ${darkTextColor}">Alýaň:</label>
+                                <input type="text" class="w-full p-2 border rounded bg-gray-50 dark:bg-slate-600 dark:border-slate-500 dark:text-gray-300" readonly placeholder="0.00">
+                            </div>
+                        </div>`;
+                    const giveInput = card.querySelector('input[type="number"]');
+                    const receiveInput = card.querySelector('input[type="text"]');
+                    giveInput.addEventListener('input', () => {
+                        const amount = parseFloat(giveInput.value) || 0;
+                        const commission = parseFloat(giveInput.dataset.commission);
+                        const result = amount > 0 ? (amount / (1 + commission)) : 0; // Avoid division by zero or negative results 
+                        receiveInput.value = result > 0 ? result.toFixed(2) : '0.00';
+                    });
+                    topupBody.appendChild(card);
+                });
+            }
+
+            function showConfirmationContent(details) {
+                const price = parseFloat(details.price);
+                // Double check balance just before showing confirmation
+                if (currentBalance < price) {
+                    openModal(insufficientBalanceModal, insufficientBalanceContent); 
+                    return; 
+                }
+
+                confirmationContent.innerHTML = `
+                    <div class="p-6 text-center">
+                        <h3 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-5">Maglumatlary Dolduryň</h3>
+                        <div class="space-y-3 text-left bg-gray-50 dark:bg-slate-700 p-4 rounded-lg border border-gray-200 dark:border-slate-600">
+                            <div><span class="text-sm text-gray-500 dark:text-gray-400">Haryt:</span><p id="confirm-product-name" class="font-bold text-gray-900 dark:text-gray-100 text-lg">${details.productName}</p></div>
+                            <div><span class="text-sm text-gray-500 dark:text-gray-400">Görnüşi:</span><p id="confirm-amount" class="font-bold text-gray-900 dark:text-gray-100 text-lg">${details.amount}</p></div>
+                            <div><span class="text-sm text-gray-500 dark:text-gray-400">Jemi töleg:</span><p id="confirm-price" class="font-bold text-green-600 text-lg">${details.price} TMT</p></div>
+                        </div>
+                        <div id="dynamic-input-container" class="mt-6 text-left"></div>
+                        <div class="mt-6 flex gap-3">
+                            <button id="close-confirm-modal-btn" class="w-full bg-gray-200 text-gray-800 dark:bg-slate-600 dark:text-gray-100 dark:hover:bg-slate-500 font-bold py-3 px-5 rounded-lg transition-all duration-300 transform hover:bg-gray-300">Yza</button>
+                            <button id="order-btn" class="w-full bg-green-600 text-white font-bold py-3 px-5 rounded-lg transition-all duration-300 transform shadow-md btn-hover-effect">Sarga</button>
+                        </div>
+                    </div>`;
+                
+                const productDetails = allProducts[details.productKey];
+                let inputType = productDetails.inputType || { id: 'generic-input', label: 'Hasap Maglumaty:', placeholder: 'Gerekli maglumaty giriziň', type: 'text' }; // Default input
+                currentOrderDetails.inputId = inputType.id; // Store the ID of the input field
+                confirmationContent.querySelector('#dynamic-input-container').innerHTML = `<label for="${inputType.id}" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">${inputType.label}</label><input type="${inputType.type}" id="${inputType.id}" placeholder="${inputType.placeholder}" class="w-full px-4 py-3 border border-gray-300 dark:bg-slate-700 dark:border-slate-600 dark:text-white rounded-lg focus:ring-green-500 focus:border-green-500 dark:focus:border-green-500 transition shadow-sm">`;
+
+                // Add event listeners AFTER adding the buttons to the DOM
+                confirmationContent.querySelector('#order-btn').addEventListener('click', () => handleOrder(details));
+                confirmationContent.querySelector('#close-confirm-modal-btn').addEventListener('click', () => closeModal(confirmationModal, confirmationContent));
+                openModal(confirmationModal, confirmationContent);
+            }
+            // Make openConfirmationModal globally accessible
+            window.openConfirmationModal = (details) => { 
+                // Ensure details is an object before proceeding
+                if (typeof details !== 'object' || details === null) {
+                    console.error("Invalid details passed to openConfirmationModal:", details);
+                    alert("Haryt maglumatlarynda ýalňyşlyk ýüze çykdy.");
+                    return;
+                }
+                const price = parseFloat(details.price);
+                if (isNaN(price) || currentBalance < price) { 
+                    openModal(insufficientBalanceModal, insufficientBalanceContent); 
+                    return; 
+                } 
+                currentOrderDetails = details; 
+                showConfirmationContent(details); 
+                closeModal(priceModal, priceModalContent); 
+            }
+            
+            async function handleOrder(orderDetails) {
+                const API_ENDPOINT = '/api/submit_order'; 
+
+                const orderBtn = confirmationContent.querySelector('#order-btn');
+                // Check if orderBtn exists before proceeding
+                if (!orderBtn) {
+                    console.error("Order button not found in confirmation modal.");
+                    return; 
+                }
+                const originalBtnText = orderBtn.innerHTML;
+                const price = parseFloat(orderDetails.price);
+
+                // Final balance check before sending
+                if (currentBalance < price) {
+                    closeModal(confirmationModal, confirmationContent);
+                    openModal(insufficientBalanceModal, insufficientBalanceContent);
+                    return;
+                }
+
+                orderBtn.disabled = true;
+                orderBtn.innerHTML = `<svg class="animate-spin mx-auto h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>`;
+
+                const inputId = currentOrderDetails.inputId;
+                const inputElement = document.getElementById(inputId);
+                // Check if input element exists
+                if (!inputElement) {
+                    console.error(`Input element with ID '${inputId}' not found.`);
+                    orderBtn.disabled = false; // Re-enable button
+                    orderBtn.innerHTML = originalBtnText;
+                    alert("Maglumat girizilýän ýer tapylmady. Sahypany täzeläň.");
+                    return;
+                }
+                const inputValue = inputElement.value.trim();
+                
+                if (!inputValue) { 
+                    inputElement.classList.add('border-red-500'); 
+                    inputElement.style.animation = 'shake 0.5s'; 
+                    // Remove animation and border class after animation ends
+                    setTimeout(() => { 
+                        inputElement.classList.remove('border-red-500'); 
+                        inputElement.style.animation = ''; 
+                    }, 500);
+                    orderBtn.disabled = false; // Re-enable button
+                    orderBtn.innerHTML = originalBtnText;
+                    return; 
+                } 
+
+                const payload = {
+                    // Ensure user data is available
+                    user: tg?.initDataUnsafe?.user || { id: 'unknown', first_name: 'Unknown' }, 
+                    order: {
+                        productName: orderDetails.productName,
+                        amount: orderDetails.amount,
+                        price: price,
+                        accountInfo: inputValue
+                    }
+                };
+                
+                try {
+                    const response = await fetch(API_ENDPOINT, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (!response.ok) {
+                        // Try to get error message from server response
+                        let errorMsg = `Server Hatasy: ${response.status} ${response.statusText}`;
+                        try {
+                            const errorData = await response.json();
+                            errorMsg += ` - ${errorData.message || ''}`;
+                        } catch (jsonError) { /* Ignore if response is not JSON */ }
+                        throw new Error(errorMsg);
+                    }
+
+                    const result = await response.json();
+                    console.log("Order submission result:", result); // Log success
+
+                    const newBalance = currentBalance - price;
+                    updateUserBalanceDisplay(newBalance); 
+
+                    confirmationContent.innerHTML = `
+                        <div class="p-8 text-center">
+                            <svg class="w-16 h-16 text-green-500 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            <h3 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-2">✅ Sargyt Alyndy!</h3>
+                            <p class="text-gray-600 dark:text-gray-400">Sargydynyz alyndy we in gysga wagtda gowşurular.</p>
+                        </div>`;
+                    
+                    // Send data back to bot AFTER showing success message
+                    if (tg && tg.sendData) {
+                        try {
+                            tg.sendData(JSON.stringify({ 
+                                command: "order_success_update", 
+                                newBalance: newBalance.toFixed(2), 
+                                product: orderDetails.productName 
+                            }));
+                        } catch (sendDataError) {
+                             console.error("Error sending data back to bot:", sendDataError);
+                        }
+                    } else {
+                        console.warn("tg.sendData not available.");
+                    }
+                    
+                    // Close WebApp after a delay
+                    setTimeout(() => {
+                        if (tg && tg.close) {
+                            try {
+                                tg.close();
+                            } catch (closeError) {
+                                console.error("Error closing Telegram WebApp:", closeError);
+                            }
+                        } else {
+                             console.warn("tg.close not available.");
+                        }
+                    }, 1500);
+
+                } catch (error) { 
+                    console.error("Error submitting order:", error); // Log the error
+                    confirmationContent.innerHTML = `
+                    <div class="p-8 text-center">
+                        <svg class="w-16 h-16 text-red-500 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" /></svg>
+                        <h3 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-2">❌ Sargyt Iberilmedi!</h3>
+                        <p class="text-gray-600 dark:text-gray-400 mb-4">Bir ýalňyşlyk ýüze çykdy (${error.message || 'Nämälim'}). Biraz soňrak synanyşyň.</p>
+                        <div class="mt-4 flex gap-3">
+                             <button onclick="closeModal(confirmationModal, confirmationContent)" class="w-full bg-gray-500 text-white px-4 py-2 rounded-lg">Ýap</button>
+                        </div>
+                    </div>`;
+                    // Do not re-enable the button here, let the user close the modal
+                }
+            }
+            
+            topupRequestBtn.addEventListener('click', async () => { 
+                const API_ENDPOINT = '/api/request_topup';
+                // Add loading state to button
+                topupRequestBtn.disabled = true;
+                topupRequestBtn.innerHTML = 'Iberilýär...';
+                try {
+                    const response = await fetch(API_ENDPOINT, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ user: tg?.initDataUnsafe?.user || {} }) // Send user data
+                    });
+                    if (!response.ok) {
+                        const errorData = await response.json();
+                        throw new Error(errorData.message || `Server error: ${response.status}`);
+                    }
+                    closeModal(topupModal, topupContent); 
+                } catch(e) {
+                    console.error("Error requesting topup:", e);
+                    alert(`Balans doldurma haýyşy iberilmedi: ${e.message}. Biraz soňrak synanyşyň.`);
+                } finally {
+                     // Restore button state
+                     topupRequestBtn.disabled = false;
+                     topupRequestBtn.innerHTML = 'Doldurmak Islegi';
+                }
+            });
+
+            // --- Event Listeners ---
+            // Product card click
+            mainContainer.addEventListener('click', (e) => { 
+                const card = e.target.closest('.card'); 
+                if (card) { 
+                    const k = card.dataset.productKey;
+                    const p = allProducts[k]; 
+                    if (p) { 
+                        modalTitle.textContent = p.name; 
+                        renderPrices(k, p.name, p.prices); 
+                        openModal(priceModal, priceModalContent); 
+                    } else {
+                        console.warn(`Product with key ${k} not found in allProducts.`);
+                    }
+                } 
+            });
+            // Price modal close button
+            closeModalBtn.addEventListener('click', () => closeModal(priceModal, priceModalContent));
+            // Price modal background click
+            priceModal.addEventListener('click', (e) => { 
+                if (e.target === priceModal) closeModal(priceModal, priceModalContent); 
+            });
+            
+            // Confirmation modal background click (handled inside showConfirmationContent now)
+            confirmationModal.addEventListener('click', (e) => { 
+                if (e.target === confirmationModal) { 
+                    closeModal(confirmationModal, confirmationContent);
+                }
+            });
+            // Insufficient balance modal close button
+            closeInsufficientBalanceBtn.addEventListener('click', () => closeModal(insufficientBalanceModal, insufficientBalanceContent));
+            // Insufficient balance modal background click
+            insufficientBalanceModal.addEventListener('click', (e) => { 
+                if (e.target === insufficientBalanceModal) closeModal(insufficientBalanceModal, insufficientBalanceContent); 
+            });
+
+            // Topup modal open button
+            openTopupModalBtn.addEventListener('click', () => { 
+                renderTopupCalculators(); 
+                openModal(topupModal, topupContent); 
+            });
+            // Topup modal close button
+            closeTopupModalBtn.addEventListener('click', () => closeModal(topupModal, topupContent));
+            // Topup modal background click
+            topupModal.addEventListener('click', (e) => { 
+                if (e.target === topupModal) closeModal(topupModal, topupContent); 
+            });
+            
+            // Escape key listener
+            document.addEventListener('keydown', (e) => { 
+                if (e.key === 'Escape') { 
+                    // Close the topmost modal first
+                    if (!priceModal.classList.contains('hidden')) closeModal(priceModal, priceModalContent);
+                    else if (!confirmationModal.classList.contains('hidden')) closeModal(confirmationModal, confirmationContent);
+                    else if (!insufficientBalanceModal.classList.contains('hidden')) closeModal(insufficientBalanceModal, insufficientBalanceContent);
+                    else if (!topupModal.classList.contains('hidden')) closeModal(topupModal, topupContent);
+                } 
+            });
+            // Scroll animation setup
+            function setupScrollAnimations() { 
+                const elements = document.querySelectorAll(".animate-on-scroll");
+                const observer = new IntersectionObserver((entries) => { 
+                    entries.forEach(entry => { 
+                        if (entry.isIntersecting) { 
+                            entry.target.classList.add("is-visible"); 
+                            observer.unobserve(entry.target); // Stop observing once visible
+                        } 
+                    }); 
+                }, { threshold: 0.1 }); // Trigger when 10% is visible
+                elements.forEach(el => observer.observe(el)); 
+            }
+            
+            // --- Initialization ---
+            setupTelegram();
+            renderAllProducts();
+        });
+    </script>
+<script defer="" src="beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"version":"2024.11.0","token":"4301355c4c5c4252bcb92c143b2cd02b","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+</body>
+</html>
